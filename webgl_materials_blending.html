@@ -26,7 +26,28 @@
       
       function init()
       {
+        //CAMERA
+        camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeigth, 1, 1000);
+        camer.position.z = 600;
         
+        //SCENE
+        scene = new THREE.Scene();
+        
+        //BACKGROUND
+        
+        var canvas = document.createElement('canvas');
+        var ctx=canvas.getContext('2d');
+        canvas.width=canvas.height=128;
+        ctx.fillStyle='#ddd';
+        ctx.fillRect(0,0,128,128);
+        ctx.fillStyle='#555';
+        ctx.fillRect(0,0,64,64);
+        ctx.fillStyle='#999';
+        ctx.fillRect(32,32,32,32);
+        ctx.fillStyle='#555';
+        ctx.fillRect(64,64,64,64);
+        ctx.fillStyle='#777';
+        ctx.fillRect(96,96,32,32);
       }
       
       function animate()
