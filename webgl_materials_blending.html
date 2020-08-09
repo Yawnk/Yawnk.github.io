@@ -68,13 +68,113 @@
         
         var blendings=[
             {name:'No',constant: THREE.NoBlending},
+            {name:'Normal',constant: THREE.NormalBlending},
+            {name:'Additive',constant: THREE.AdditiveBlending},
+            {name:'Subtractive',constant: THREE.SubtractiveBlending},
+            {name:'Multiply',constant: THREE.Multiply'Blending}
          ];
+             
+         var map0 = textureLoader.load( 'textures/uv_grid_opengl.jpg' );
+				var map1 = textureLoader.load( 'textures/sprite0.jpg' );
+				var map2 = textureLoader.load( 'textures/sprite0.png' );
+				var map3 = textureLoader.load( 'textures/lensflare/lensflare0.png' );
+				var map4 = textureLoader.load( 'textures/lensflare/lensflare0_alpha.png' );
+
+				var geo1 = new THREE.PlaneBufferGeometry( 100, 100 );
+				var geo2 = new THREE.PlaneBufferGeometry( 100, 25 );
+
+				addImageRow( map0, 300 );
+				addImageRow( map1, 150 );
+				addImageRow( map2, 0 );
+				addImageRow( map3, - 150 );
+				addImageRow( map4, - 300 );
+
+				function addImageRow( map, y ) {
+
+					for ( var i = 0; i < blendings.length; i ++ ) {
+
+						var blending = blendings[ i ];
+
+						var material = new THREE.MeshBasicMaterial( { map: map } );
+						material.transparent = true;
+						material.blending = blending.constant;
+
+						var x = ( i - blendings.length / 2 ) * 110;
+						var z = 0;
+
+						var mesh = new THREE.Mesh( geo1, material );
+						mesh.position.set( x, y, z );
+						scene.add( mesh );
+
+
+						var mesh = new THREE.Mesh( geo2, generateLabelMaterial( blending.name ) );
+						mesh.position.set( x, y - 75, z );
+						scene.add( mesh );
+
+					}
+
+				}
+
+				// RENDERER
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+				// EVENTS
+
+				window.addEventListener( 'resize', onWindowResize, false );
       }
       
-      function animate()
-      {
-        
-      }
+     function onWindowResize() {
+
+				var SCREEN_WIDTH = window.innerWidth;
+				var SCREEN_HEIGHT = window.innerHeight;
+
+				renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+
+				camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
+				camera.updateProjectionMatrix();
+
+			}
+
+
+			function generateLabelMaterial( text ) {
+
+				var canvas = document.createElement( 'canvas' );
+				var ctx = canvas.getContext( '2d' );
+				canvas.width = 128;
+				canvas.height = 32;
+
+				ctx.fillStyle = 'rgba( 0, 0, 0, 0.95 )';
+				ctx.fillRect( 0, 0, 128, 32 );
+
+				ctx.fillStyle = 'white';
+				ctx.font = '12pt arial bold';
+				ctx.fillText( text, 10, 22 );
+
+				var map = new THREE.CanvasTexture( canvas );
+
+				var material = new THREE.MeshBasicMaterial( { map: map, transparent: true } );
+
+				return material;
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				var time = Date.now() * 0.00025;
+				var ox = ( time * - 0.01 * mapBg.repeat.x ) % 1;
+				var oy = ( time * - 0.01 * mapBg.repeat.y ) % 1;
+
+				mapBg.offset.set( ox, oy );
+
+				renderer.render( scene, camera );
+
+			}
     </script>
   </body>
 </html>
