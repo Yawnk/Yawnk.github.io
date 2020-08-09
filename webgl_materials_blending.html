@@ -62,6 +62,7 @@
         var materialBg=new THREE.MeshBasicMaterial({map:mapBg});
         
         var meshBg = new THREE.Mesh(new THREE.PlaneBufferGeometry(4000,2000),materialBg);
+	meshBg.position.set(0,0,-1);
         scene.add(meshBg);
         
         //OBJECTS
