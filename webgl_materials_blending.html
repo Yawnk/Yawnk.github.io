@@ -75,57 +75,57 @@
             {name:'Multiply',constant: THREE.MultiplyBlending}
          ];
              
-         var map0 = textureLoader.load( 'https://yawnk.github.io/textures/uv_grid_opengl.jpg' );
-				var map1 = textureLoader.load( 'https://yawnk.github.io/textures/sprite0.jpg' );
-				var map2 = textureLoader.load( 'https://yawnk.github.io/textures/sprite0.png' );
-				var map3 = textureLoader.load( 'https://yawnk.github.io/textures/lensflare/lensflare0.png' );
-				var map4 = textureLoader.load( 'https://yawnk.github.io/textures/lensflare/lensflare0_alpha.png' );
+	var map0 = textureLoader.load( 'https://yawnk.github.io/textures/uv_grid_opengl.jpg' );
+	var map1 = textureLoader.load( 'https://yawnk.github.io/textures/sprite0.jpg' );
+	var map2 = textureLoader.load( 'https://yawnk.github.io/textures/sprite0.png' );
+	var map3 = textureLoader.load( 'https://yawnk.github.io/textures/lensflare/lensflare0.png' );
+	var map4 = textureLoader.load( 'https://yawnk.github.io/textures/lensflare/lensflare0_alpha.png' );
 
-				var geo1 = new THREE.PlaneBufferGeometry( 100, 100 );
-				var geo2 = new THREE.PlaneBufferGeometry( 100, 25 );
+	var geo1 = new THREE.PlaneBufferGeometry( 100, 100 );
+	var geo2 = new THREE.PlaneBufferGeometry( 100, 25 );
 
-				addImageRow( map0, 300 );
-				addImageRow( map1, 150 );
-				addImageRow( map2, 0 );
-				addImageRow( map3, - 150 );
-				addImageRow( map4, - 300 );
+	addImageRow( map0, 300 );
+	addImageRow( map1, 150 );
+	addImageRow( map2, 0 );
+	addImageRow( map3, - 150 );
+	addImageRow( map4, - 300 );
 
-				function addImageRow( map, y ) {
+	function addImageRow( map, y ) {
 
-					for ( var i = 0; i < blendings.length; i ++ ) {
+	for ( var i = 0; i < blendings.length; i ++ ) {
 
-						var blending = blendings[ i ];
+		var blending = blendings[ i ];
 
-						var material = new THREE.MeshBasicMaterial( { map: map } );
-						material.transparent = true;
-						material.blending = blending.constant;
+		var material = new THREE.MeshBasicMaterial( { map: map } );
+		material.transparent = true;
+		material.blending = blending.constant;
 
-						var x = ( i - blendings.length / 2 ) * 110;
-						var z = 0;
+		var x = ( i - blendings.length / 2 ) * 110;
+		var z = 0;
 
-						var mesh = new THREE.Mesh( geo1, material );
-						mesh.position.set( x, y, z );
-						scene.add( mesh );
+		var mesh = new THREE.Mesh( geo1, material );
+		mesh.position.set( x, y, z );
+		scene.add( mesh );
 
 
-						var mesh = new THREE.Mesh( geo2, generateLabelMaterial( blending.name ) );
-						mesh.position.set( x, y - 75, z );
-						scene.add( mesh );
+		var mesh = new THREE.Mesh( geo2, generateLabelMaterial( blending.name ) );
+		mesh.position.set( x, y - 75, z );
+		scene.add( mesh );
 
-					}
+	}
 
-				}
+	}
 
-				// RENDERER
+	// RENDERER
 
-				renderer = new THREE.WebGLRenderer();
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				document.body.appendChild( renderer.domElement );
+	renderer = new THREE.WebGLRenderer();
+	renderer.setPixelRatio( window.devicePixelRatio );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
 
-				// EVENTS
+	// EVENTS
 
-				window.addEventListener( 'resize', onWindowResize, false );
+	window.addEventListener( 'resize', onWindowResize, false );
       }
       
      function onWindowResize() {
