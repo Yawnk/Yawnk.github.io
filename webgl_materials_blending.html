@@ -49,7 +49,7 @@
         ctx.fillStyle='#777';
         ctx.fillRect(96,96,32,32);
         
-        mapBg = new THREE.CanvasTextures(canvas);
+        mapBg = new THREE.CanvasTexture(canvas);
         mapBg.wrapS = mapBg.wrapT = THREE.RepeatWrapping;
         mapBg.repeat.set(128,64);
         
