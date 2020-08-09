@@ -27,9 +27,9 @@
       function init()
       {
         //CAMERA
-        camera = "";//new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeigth, 1, 1000);
+        camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeigth, 1, 1000);
        // camer.position.z = 600;
-        /*
+       
         //SCENE
         scene = new THREE.Scene();
         
@@ -48,7 +48,7 @@
         ctx.fillRect(64,64,64,64);
         ctx.fillStyle='#777';
         ctx.fillRect(96,96,32,32);
-        */
+        
       }
       
       function animate()
