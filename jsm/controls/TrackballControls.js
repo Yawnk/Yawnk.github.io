@@ -5,13 +5,13 @@
  * @author Luca Antiga 	/ http://lantiga.github.io
  */
 
-import { 
+import {
 	EventDispatcher,
 	MOUSE,
 	Quaternion,
 	Vector2,
 	Vector3
-} from "https://yawnk.github.io/three.module.js";
+} from "https://yawnk.github.io/three.module.js";  
 
 var TrackballControls = function ( object, domElement ) {
 
