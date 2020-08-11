@@ -11,7 +11,7 @@ import {
 	Quaternion,
 	Vector2,
 	Vector3
-} from "https://yawnk.github.io/build/three.module.js";
+} from "https://yawnk.github.io/three.module.js";
 
 var TrackballControls = function ( object, domElement ) {
 
