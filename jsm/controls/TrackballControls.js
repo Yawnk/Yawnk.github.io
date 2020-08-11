@@ -5,7 +5,7 @@
  * @author Luca Antiga 	/ http://lantiga.github.io
  */
 
-import {
+import { 
 	EventDispatcher,
 	MOUSE,
 	Quaternion,
