@@ -36,7 +36,7 @@
 
 			function init() {
 
-				var frustumSize = 100; //시야 작으면 확대 크면 축소
+				var frustumSize = 1000; //시야 작으면 확대 크면 축소
 				var aspect = window.innerWidth / window.innerHeight;
 				camera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 1, 1000 );
 
